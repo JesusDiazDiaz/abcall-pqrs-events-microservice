@@ -27,9 +27,11 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
         facade = MicroservicesFacade()
         current_user = facade.get_user(incidence.user_sub)
 
+        LOGGER.info("current user", current_user)
+
         try:
             incidence = Incidence(
-                client_id=current_user.client_id,
+                client_id=current_user["client_id"],
                 subject=incidence.title,
                 description=incidence.description,
                 status=Status.ABIERTO,
@@ -37,7 +39,7 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
                 estimated_close_date=estimated_close_date,
                 user_sub=incidence.user_sub,
                 type=IncidentType(IncidentType.PETICION),
-                communication_type=CommunicationType(current_user.communication_type)
+                communication_type=CommunicationType(current_user["communication_type"])
             )
 
             self.db_session.add(incidence)

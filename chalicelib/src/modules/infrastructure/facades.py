@@ -1,6 +1,9 @@
+import logging
 import os
 
 import requests
+
+LOGGER = logging.getLogger('abcall-pqrs-events-microservice')
 
 class Users:
     def __init__(self):
@@ -16,6 +19,7 @@ class Users:
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
+            LOGGER.error("get user error", e)
             return None
 
 
