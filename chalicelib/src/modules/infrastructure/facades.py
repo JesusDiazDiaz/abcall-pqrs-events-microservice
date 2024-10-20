@@ -1,12 +1,18 @@
+import os
+
 import requests
 
 class Users:
     def __init__(self):
-        self.base_url = 'https://1acgpw2vfg.execute-api.us-east-1.amazonaws.com/api'  # URL del microservicio de usuarios
+        self.base_url = 'https://1acgpw2vfg.execute-api.us-east-1.amazonaws.com/api'
+        self.api_key = 'nwrysmZnvl2ZV1pFajp7j8vmxYK3naFsavKb2Nsy'
 
     def get_user_by_sub_or_none(self, user_sub):
+        headers = {
+            'x-api-key': self.api_key
+        }
         try:
-            response = requests.get(f"{self.base_url}/user/{user_sub}")
+            response = requests.get(f"{self.base_url}/user/{user_sub}", headers=headers)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
