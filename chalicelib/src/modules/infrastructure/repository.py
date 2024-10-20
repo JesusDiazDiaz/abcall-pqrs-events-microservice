@@ -24,21 +24,20 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
         estimated_close_date = incidence_date + timedelta(days=8)
 
         LOGGER.info(f"Get user by sub {incidence.user_sub}")
-        # TODO: Add retrieve user
-        # facade = MicroservicesFacade()
-        # current_user = facade.get_user(incidence.user_sub)
+        facade = MicroservicesFacade()
+        current_user = facade.get_user(incidence.user_sub)
 
         try:
             incidence = Incidence(
-                client_id='1',
+                client_id=current_user.client_id,
                 subject=incidence.title,
                 description=incidence.description,
                 status=Status.ABIERTO,
                 date=incidence_date,
                 estimated_close_date=estimated_close_date,
                 user_sub=incidence.user_sub,
-                type=IncidentType.PETICION,
-                type_communication=CommunicationType.EMAIL
+                type=IncidentType(IncidentType.PETICION),
+                communication_type=CommunicationType(current_user.communication_type)
             )
 
             self.db_session.add(incidence)
