@@ -27,7 +27,7 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
         facade = MicroservicesFacade()
         current_user = facade.get_user(incidence.user_sub)
 
-        LOGGER.info("current user", current_user)
+        LOGGER.info("current user: %s", current_user)
 
         try:
             incidence = Incidence(
@@ -39,7 +39,7 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
                 estimated_close_date=estimated_close_date,
                 user_sub=incidence.user_sub,
                 type=IncidentType(IncidentType.PETICION),
-                communication_type=CommunicationType(current_user["communication_type"])
+                communication_type=CommunicationType(current_user["communication_type"].capitalize())
             )
 
             self.db_session.add(incidence)
