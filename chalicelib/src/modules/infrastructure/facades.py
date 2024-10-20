@@ -2,7 +2,7 @@ import requests
 
 class Users:
     def __init__(self):
-        self.base_url = 'http://users-microservice/api/users'  # URL del microservicio de usuarios
+        self.base_url = 'https://1acgpw2vfg.execute-api.us-east-1.amazonaws.com/api'  # URL del microservicio de usuarios
 
     def get_user_by_sub_or_none(self, user_sub):
         try:
