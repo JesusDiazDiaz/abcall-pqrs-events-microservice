@@ -17,7 +17,7 @@ SQS_QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/044162189377/AbcallPqrs'
 # @app.on_sns_message(topic='AbcallPqrsTopic')
 @app.on_sqs_message(queue='AbcallPqrs', batch_size=1)
 def handle_sqs_message(event):
-    app.log.debug("Received SQS event with %d records", len(event))
+    app.log.debug("Received SQS event with %d records", event)
 
     for record in event:
         incidence_as_json = json.loads(record.body)
