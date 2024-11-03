@@ -6,6 +6,11 @@
   },
   "stages": {
     "prod": {
+       "lambda_functions": {
+        "handle_sqs_message": {
+          "lambda_timeout": 60
+        }
+      }
     }
   }
 }
