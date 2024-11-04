@@ -38,7 +38,7 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
                 date=incidence_date,
                 estimated_close_date=estimated_close_date,
                 user_sub=incidence.user_sub,
-                type=IncidentType(IncidentType.PETICION),
+                type=IncidentType(incidence.type),
                 communication_type=CommunicationType(current_user["communication_type"].capitalize()),
                 ticket_number=incidence.ticket_number
             )
