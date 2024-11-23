@@ -29,6 +29,7 @@ def handle_sqs_message(event):
             date=incidence_as_json["date"],
             user_sub=incidence_as_json["user_sub"],
             ticket_number=incidence_as_json["ticket_number"],
+            channel=incidence_as_json["channel"]
         )
         execute_command(command)
 

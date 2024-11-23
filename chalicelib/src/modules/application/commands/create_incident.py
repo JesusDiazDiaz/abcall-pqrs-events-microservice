@@ -17,6 +17,7 @@ class CreateIncidenceCommand(Command):
     date: int
     user_sub: str
     ticket_number: str
+    channel: str
 
 
 class CreateIncidenceHandler(CommandBaseHandler):

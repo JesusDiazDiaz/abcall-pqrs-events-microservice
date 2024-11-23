@@ -40,7 +40,8 @@ class IncidenceRepositoryPostgres(IncidenceRepository):
                 user_sub=incidence.user_sub,
                 type=IncidentType(incidence.type),
                 communication_type=CommunicationType(current_user["communication_type"].capitalize()),
-                ticket_number=incidence.ticket_number
+                ticket_number=incidence.ticket_number,
+                channel=incidence.channel
             )
 
             self.db_session.add(incidence)
